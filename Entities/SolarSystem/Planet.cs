@@ -3,17 +3,17 @@
     public class Planet
     {
         public string Name { get; }
-        public decimal Velocity { get; }
-        public decimal SunDistance { get; }
+        public double Velocity { get; }
+        public double SunDistance { get; }
 
-        public Planet(string name, decimal sunDistance, decimal velocity)
+        public Planet(string name, double sunDistance, double velocity)
         {
             this.Name = name ?? throw new System.ArgumentNullException(nameof(name));
             this.SunDistance = sunDistance;
             this.Velocity = velocity;
         }
 
-        public decimal GetPosition(uint day)
+        public double GetAngle(uint day)
         {
             return ((this.Velocity * day % 360) + 360) % 360;
         }
