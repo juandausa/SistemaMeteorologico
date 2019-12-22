@@ -15,7 +15,7 @@
 
         public decimal GetPosition(uint day)
         {
-            return (this.Velocity * day % 360);
+            return ((this.Velocity * day % 360) + 360) % 360;
         }
     }
 }
