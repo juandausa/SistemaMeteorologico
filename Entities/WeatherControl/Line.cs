@@ -6,6 +6,7 @@ namespace Entities.WeatherControl
     {
         public double Slope { get; }
         public double YIntercept { get; }
+        public double XIntercept { get; }
         public int DecimalPrecision { get; }
 
         /// <summary>
@@ -36,18 +37,25 @@ namespace Entities.WeatherControl
 
             if (b == 0)
             {
-                this.Slope = 0;
-                this.YIntercept = 0;
+                this.Slope = double.PositiveInfinity;
+                this.YIntercept = pointA.x == 0 ? 0 : double.NaN;
+                this.XIntercept = pointA.x;
             }
             else
             {
-                this.Slope = (-1) * m / b;
-                this.YIntercept = (-1) * c / b;
+                this.Slope = Math.Round((-1) * m / b, this.DecimalPrecision);
+                this.YIntercept = Math.Round((-1) * c / b, this.DecimalPrecision);
+                this.XIntercept = this.Slope == 0 ? 0 : Math.Round(-b / this.Slope);
             }
         }
 
         public bool Contains((double x, double y) point)
         {
+            if (double.IsInfinity(this.Slope))
+            {
+                return point.x == this.XIntercept;
+            }
+
             return Math.Round(point.y, this.DecimalPrecision) == Math.Round(this.Slope * point.x + this.YIntercept, this.DecimalPrecision);
         }
 
