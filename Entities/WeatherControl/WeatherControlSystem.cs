@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Entities.WeatherControl
 {
     public class WeatherControlSystem
     {
-        public SolarSystem.SolarSystem SolarSystem { get; set; }
+        public SolarSystem.SolarSystem SolarSystem { get; }
 
         public WeatherControlSystem(SolarSystem.SolarSystem solarSystem)
         {
@@ -14,17 +13,23 @@ namespace Entities.WeatherControl
 
         public IList<Forecast> CalculateForecast(uint amountOfDays)
         {
-            for (var day = 0; day < amountOfDays; day++)
+            var forecasts = new List<Forecast>();
+
+            for (uint day = 1; day <= amountOfDays; day++)
             {
-                var forecast = this._CalculateForecast(day);
+                forecasts.Add(this._CalculateForecast(day));
             }
 
-            return new List<Forecast>();
+            return forecasts;
         }
 
-        protected virtual object _CalculateForecast(int day)
+        protected virtual Forecast _CalculateForecast(uint day)
         {
-            throw new NotImplementedException();
+            return new Forecast()
+            {
+                Day = day,
+                Weather = Weather.Drought
+            };
         }
     }
 }
