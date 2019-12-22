@@ -1,8 +1,8 @@
 ﻿using API.API.v1;
 using API.Contracts;
 using API.Data.Entity;
-using API.DTO.Response;
 using API.DTO.Request;
+using API.DTO.Response;
 using API.Infrastructure.Configs;
 using AutoMapper;
 using AutoWrapper.Wrappers;
@@ -43,14 +43,14 @@ namespace API.Test.v1
                     ID = 1,
                     FirstName = "Vynn Markus",
                     LastName = "Durano",
-                    DateOfBirth = Convert.ToDateTime("01/15/2016")
+                    DateOfBirth = Convert.ToDateTime("2016/01/15")
                 },
                 new Person()
                 {
                     ID = 2,
                     FirstName = "Vianne Maverich",
                     LastName = "Durano",
-                    DateOfBirth = Convert.ToDateTime("02/15/2016")
+                    DateOfBirth = Convert.ToDateTime("2016/02/15")
                 }
             };
         }
@@ -61,7 +61,7 @@ namespace API.Test.v1
             {
                 FirstName = "Vinz",
                 LastName = "Durano",
-                DateOfBirth = Convert.ToDateTime("02/15/2016")
+                DateOfBirth = Convert.ToDateTime("2016/02/15")
             };
         }
 
@@ -71,7 +71,7 @@ namespace API.Test.v1
             {
                 FirstName = "Vinz",
                 LastName = "Durano",
-                DateOfBirth = Convert.ToDateTime("02/15/2016")
+                DateOfBirth = Convert.ToDateTime("2016/02/15")
             };
         }
 
