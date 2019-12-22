@@ -13,10 +13,15 @@ namespace Entities.WeatherControl
         {
             if (decimalPresicion < 0)
             {
+                throw new System.ArgumentException(nameof(decimalPresicion));
+            }
+
+            if (solarSystem == null || solarSystem.Planets.Count != 3)
+            {
                 throw new System.ArgumentException(nameof(solarSystem));
             }
 
-            this.SolarSystem = solarSystem ?? throw new System.ArgumentNullException(nameof(solarSystem));
+            this.SolarSystem = solarSystem;
             this.DecimalPresicion = decimalPresicion;
         }
         public WeatherControlSystem(SolarSystem.SolarSystem solarSystem) : this(solarSystem, 2) { }
@@ -36,34 +41,46 @@ namespace Entities.WeatherControl
         protected virtual Forecast _CalculateForecast(uint day)
         {
             var forecast = new Forecast(day, Weather.Other);
-            if (this.PlanetsAlignedWithSun(day))
+            if (this.ArePlanetsAlignedWithSun(day))
             {
                 forecast.Weather = Weather.Drought;
                 return forecast;
             }
 
-            if (this.PlanetsAligned(day))
+            if (this.ArePlanetsAligned(day))
             {
                 forecast.Weather = Weather.Normal;
+                return forecast;
+            }
+
+            if (this.ArePlanetsMakingTriangleWithSunInside(day))
+            {
+                forecast.Weather = Weather.Rainy;
                 return forecast;
             }
 
             return forecast;
         }
 
-        protected virtual bool PlanetsAlignedWithSun(uint day)
+        protected virtual bool ArePlanetsMakingTriangleWithSunInside(uint day)
+        {
+            var triangle = new Triangle(GetCartesianPosition(day, this.SolarSystem.Planets[0]), GetCartesianPosition(day, this.SolarSystem.Planets[1]), GetCartesianPosition(day, this.SolarSystem.Planets[2]));
+            return triangle.Contains(this.SolarSystem.SunPosition);
+        }
+
+        protected virtual bool ArePlanetsAlignedWithSun(uint day)
         {
             Line line = CreateLineBetweenFirstAndLasPlanet(day);
             return this.SolarSystem.Planets.All(planet => line.Contains(GetCartesianPosition(day, planet))) && line.Contains(this.SolarSystem.SunPosition);
         }
 
-        protected virtual bool PlanetsAligned(uint day)
+        protected virtual bool ArePlanetsAligned(uint day)
         {
             Line line = CreateLineBetweenFirstAndLasPlanet(day);
             return this.SolarSystem.Planets.All(planet => line.Contains(GetCartesianPosition(day, planet)));
         }
 
-        private Line CreateLineBetweenFirstAndLasPlanet(uint day)
+        protected virtual Line CreateLineBetweenFirstAndLasPlanet(uint day)
         {
             var firstPlanet = this.SolarSystem.Planets.First();
             var lastPlanet = this.SolarSystem.Planets.Last();

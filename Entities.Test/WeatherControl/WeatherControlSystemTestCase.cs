@@ -52,5 +52,20 @@ namespace Entities.Test.WeatherControl
             forecast.First().Day.Should().Be(1);
             forecast.First().Weather.Should().Be(Weather.Normal);
         }
+
+        [Fact]
+        public void RainySolarSystem_GetForecast_ReturnRainy()
+        {
+            var earth = new Planet("Earth", 1000, 45);
+            var mars = new Planet("Mars", 2000, 135);
+            var neptune = new Planet("Neptune", 3000, -90);
+            var planets = new List<Planet>() { earth, mars, neptune };
+
+            var solarSystem = new Entities.SolarSystem.SolarSystem(planets);
+            var weatherControlSystem = new WeatherControlSystem(solarSystem);
+            var forecast = weatherControlSystem.CalculateForecast(1);
+            forecast.First().Day.Should().Be(1);
+            forecast.First().Weather.Should().Be(Weather.Rainy);
+        }
     }
 }
