@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Entities.SolarSystem;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Entities.WeatherControl
 {
@@ -25,11 +27,45 @@ namespace Entities.WeatherControl
 
         protected virtual Forecast _CalculateForecast(uint day)
         {
-            return new Forecast()
+            var forecast = new Forecast(day);
+            if (this.PlanetsAlignedWithSun(day))
             {
-                Day = day,
-                Weather = Weather.Drought
-            };
+                forecast.Weather = Weather.Drought;
+                return forecast;
+            }
+
+            if (this.PlanetsAligned(day))
+            {
+                forecast.Weather = Weather.Normal;
+                return forecast;
+            }
+
+            return forecast;
+        }
+
+        protected virtual bool PlanetsAlignedWithSun(uint day)
+        {
+            Line line = CreateLineBetweenFirstAndLasPlanet(day);
+            return this.SolarSystem.Planets.All(planet => line.Contains(GetCartesianPosition(day, planet))) && line.Contains(this.SolarSystem.SunPosition);
+        }
+
+        protected virtual bool PlanetsAligned(uint day)
+        {
+            Line line = CreateLineBetweenFirstAndLasPlanet(day);
+            return this.SolarSystem.Planets.All(planet => line.Contains(GetCartesianPosition(day, planet)));
+        }
+
+        private Line CreateLineBetweenFirstAndLasPlanet(uint day)
+        {
+            var firstPlanet = this.SolarSystem.Planets.First();
+            var lastPlanet = this.SolarSystem.Planets.Last();
+            var line = new Line(GetCartesianPosition(day, firstPlanet), GetCartesianPosition(day, lastPlanet));
+            return line;
+        }
+
+        protected virtual (double, double) GetCartesianPosition(uint day, Planet lastPlanet)
+        {
+            return (lastPlanet.SunDistance, lastPlanet.GetAngle(day)).ToCartesian(this.SolarSystem.DecimalPresicion);
         }
     }
 }

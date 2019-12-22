@@ -13,8 +13,8 @@ namespace Entities.Test.WeatherControl
         public void SolarSystem_GetTomorrowForecast_ReturnForecastReportWithOneElement()
         {
             var earth = new Planet("Earth", 1000, 0);
-            var mars = new Planet("Mars", 1000, 0);
-            var neptune = new Planet("Neptune", 1000, 0);
+            var mars = new Planet("Mars", 2000, 0);
+            var neptune = new Planet("Neptune", 3000, 0);
             var planets = new List<Planet>() { earth, mars, neptune };
 
             var solarSystem = new Entities.SolarSystem.SolarSystem(planets);
@@ -27,8 +27,8 @@ namespace Entities.Test.WeatherControl
         public void DroughtSeasonSolarSystem_GetForecast_ReturnDroughtSeasson()
         {
             var earth = new Planet("Earth", 1000, 0);
-            var mars = new Planet("Mars", 1000, 0);
-            var neptune = new Planet("Neptune", 1000, 0);
+            var mars = new Planet("Mars", 2000, 0);
+            var neptune = new Planet("Neptune", 3000, 0);
             var planets = new List<Planet>() { earth, mars, neptune };
 
             var solarSystem = new Entities.SolarSystem.SolarSystem(planets);
