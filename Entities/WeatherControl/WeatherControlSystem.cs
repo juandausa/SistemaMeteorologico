@@ -40,27 +40,22 @@ namespace Entities.WeatherControl
 
         public virtual Forecast CalculateSingleForecast(uint day)
         {
-            var forecast = new Forecast(day, Weather.Other);
             if (this.ArePlanetsAlignedWithSun(day))
             {
-                forecast.Weather = Weather.Drought;
-                return forecast;
+                return new Forecast(day, Weather.Drought);
             }
 
             if (this.ArePlanetsAligned(day))
             {
-                forecast.Weather = Weather.Normal;
-                return forecast;
+                return new Forecast(day, Weather.Normal);
             }
 
             if (this.ArePlanetsMakingTriangleWithSunInside(day))
             {
-                forecast.Weather = Weather.Rainy;
-                forecast.RainfallIntensity = this.GetRainfallIntensity(day);
-                return forecast;
+                return new Forecast(day, this.GetRainfallIntensity(day));
             }
 
-            return forecast;
+            return new Forecast(day, Weather.Other);
         }
 
         private double GetRainfallIntensity(uint day)

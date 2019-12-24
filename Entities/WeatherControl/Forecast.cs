@@ -4,11 +4,11 @@ namespace Entities.WeatherControl
 {
     public class Forecast
     {
-        public Weather Weather { get; set; }
-        public uint Day { get; set; }
-        public double RainfallIntensity { get; set; }
+        public Weather Weather { get; }
+        public uint Day { get; }
+        public double RainfallIntensity { get; }
 
-        public Forecast(uint day, Weather weather, double rainfallIntensity)
+        protected Forecast(uint day, Weather weather, double rainfallIntensity)
         {
             if (day == 0)
             {
@@ -19,6 +19,8 @@ namespace Entities.WeatherControl
             this.Weather = weather;
             this.RainfallIntensity = rainfallIntensity;
         }
+
+        public Forecast(uint day, double rainfallIntensity) : this(day, Weather.Rainy, rainfallIntensity) { }
 
         public Forecast(uint day, Weather weather) : this(day, weather, 0)
         {
