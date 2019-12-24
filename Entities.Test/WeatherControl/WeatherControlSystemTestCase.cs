@@ -49,6 +49,7 @@ namespace Entities.Test.WeatherControl
             var forecast = weatherControlSystem.CalculateSingleForecast(1);
             forecast.Day.Should().Be(1);
             forecast.Weather.Should().Be(Weather.Drought);
+            forecast.RainfallIntensity.Should().Be(0);
         }
 
         [Fact]
@@ -64,6 +65,7 @@ namespace Entities.Test.WeatherControl
             var forecast = weatherControlSystem.CalculateSingleForecast(1);
             forecast.Day.Should().Be(1);
             forecast.Weather.Should().Be(Weather.Normal);
+            forecast.RainfallIntensity.Should().Be(0);
         }
 
         [Fact]
@@ -79,6 +81,7 @@ namespace Entities.Test.WeatherControl
             var forecast = weatherControlSystem.CalculateSingleForecast(1);
             forecast.Day.Should().Be(1);
             forecast.Weather.Should().Be(Weather.Rainy);
+            forecast.RainfallIntensity.Should().BeGreaterThan(0);
         }
     }
 }
