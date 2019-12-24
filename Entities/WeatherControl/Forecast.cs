@@ -1,4 +1,6 @@
-﻿namespace Entities.WeatherControl
+﻿using System;
+
+namespace Entities.WeatherControl
 {
     public class Forecast
     {
@@ -8,6 +10,11 @@
 
         public Forecast(uint day, Weather weather, double rainfallIntensity)
         {
+            if (day == 0)
+            {
+                throw new ArgumentException(nameof(day));
+            }
+
             this.Day = day;
             this.Weather = weather;
             this.RainfallIntensity = rainfallIntensity;
