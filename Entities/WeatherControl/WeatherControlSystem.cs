@@ -32,13 +32,13 @@ namespace Entities.WeatherControl
 
             for (uint day = 1; day <= amountOfDays; day++)
             {
-                forecasts.Add(this._CalculateForecast(day));
+                forecasts.Add(this.CalculateSingleForecast(day));
             }
 
             return forecasts;
         }
 
-        protected virtual Forecast _CalculateForecast(uint day)
+        public virtual Forecast CalculateSingleForecast(uint day)
         {
             var forecast = new Forecast(day, Weather.Other);
             if (this.ArePlanetsAlignedWithSun(day))
