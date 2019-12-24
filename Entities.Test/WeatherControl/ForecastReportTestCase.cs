@@ -155,6 +155,23 @@ namespace Entities.Test.WeatherControl
             report.Periods[Weather.Normal].Should().Be(1);
         }
 
+        [Fact]
+        public void TwoPeriodsOfRainyOneOfNormalOneOfDroughtAndOneOfOtherForecast_GenerateReport_ReturnPeriods()
+        {
+            List<Forecast> forecast = CreateTenDaysOfRain();
+            forecast.Add(new Forecast(11, Weather.Normal));
+            forecast.Add(new Forecast(12, 100));
+            forecast.Add(new Forecast(13, Weather.Drought));
+            forecast.Add(new Forecast(14, Weather.Other));
+            var report = new ForecastReport(forecast);
+            report.Periods.Values.Any(value => value > 0).Should().BeTrue();
+            report.Periods.Values.Count(value => value > 0).Should().Be(4);
+            report.Periods[Weather.Rainy].Should().Be(2);
+            report.Periods[Weather.Normal].Should().Be(1);
+            report.Periods[Weather.Drought].Should().Be(1);
+            report.Periods[Weather.Other].Should().Be(1);
+        }
+
         private static List<Forecast> CreateTenDaysOfRain()
         {
             var forecast = new List<Forecast>();
