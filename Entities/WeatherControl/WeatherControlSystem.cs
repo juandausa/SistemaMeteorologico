@@ -56,10 +56,17 @@ namespace Entities.WeatherControl
             if (this.ArePlanetsMakingTriangleWithSunInside(day))
             {
                 forecast.Weather = Weather.Rainy;
+                forecast.RainfallIntensity = this.GetRainfallIntensity(day);
                 return forecast;
             }
 
             return forecast;
+        }
+
+        private double GetRainfallIntensity(uint day)
+        {
+            var triangle = new Triangle(GetCartesianPosition(day, this.SolarSystem.Planets[0]), GetCartesianPosition(day, this.SolarSystem.Planets[1]), GetCartesianPosition(day, this.SolarSystem.Planets[2]));
+            return triangle.Perimeter;
         }
 
         protected virtual bool ArePlanetsMakingTriangleWithSunInside(uint day)
