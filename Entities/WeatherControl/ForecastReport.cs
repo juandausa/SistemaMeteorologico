@@ -17,6 +17,12 @@ namespace Entities.WeatherControl
                 throw new ArgumentNullException(nameof(forecasts));
             }
 
+            var dupplicates = forecasts.GroupBy(x => new { x.Day }).Select(group => new { Count = group.Count() }).Where(x => x.Count > 1).Any();
+            if (dupplicates)
+            {
+                throw new ArgumentNullException(nameof(forecasts));
+            }
+
             this.Forecasts = forecasts;
             this.Periods = new Dictionary<Weather, uint>();
             this.GenerateReport();
@@ -42,7 +48,7 @@ namespace Entities.WeatherControl
                 lastWeather = forecast.Weather;
             }
 
-            this.Forecasts.Where(forecast => forecast.Weather == Weather.Rainy).WhereResponse().Success(rainyDays =>
+            this.Forecasts.Where(forecast => forecast.Weather == Weather.Rainy).AnyResponse().Success(rainyDays =>
             {
                 this.HeaviestDayOfRain = rainyDays.Where(forecast => forecast.RainfallIntensity == rainyDays.Max(forecastHeaviestRainfall => forecastHeaviestRainfall.RainfallIntensity)).First().Day;
             });
