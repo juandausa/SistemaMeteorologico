@@ -17,7 +17,7 @@ namespace System.Linq
             return CreateResponse(error, result);
         }
 
-        public static Response<IEnumerable<TSource>> WhereResponse<TSource>(this IEnumerable<TSource> enumerable, string error = "")
+        public static Response<IEnumerable<TSource>> AnyResponse<TSource>(this IEnumerable<TSource> enumerable, string error = "")
         {
             if (enumerable.Any())
             {
