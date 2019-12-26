@@ -11,12 +11,7 @@ namespace Entities.SolarSystem
 
         public SolarSystem(IList<Planet> planets, (double x, double y) sunPosition)
         {
-            if (planets == null || planets.Count < 2)
-            {
-                new System.ArgumentException(nameof(planets));
-            }
-
-            this.Planets = planets;
+            this.Planets = planets ?? throw new System.ArgumentNullException(nameof(planets));
             this.SunPosition = sunPosition;
         }
     }
