@@ -23,8 +23,7 @@ namespace HwEFCoreWebAPI
         {
             services.AddControllers();
             services.AddDbContext<ForecastContext>(options =>
-                // options.UseInMemoryDatabase(databaseName: "sistemaMeteorologico")
-                options.UseSqlite(@"Data Source=CustomerDB.db;")
+                options.UseInMemoryDatabase(databaseName: "sistemaMeteorologico")
             );
 
             services.AddHostedService<ForecastGenerationHostedService>();
