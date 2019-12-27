@@ -1,12 +1,17 @@
-﻿using System;
+﻿using API.Data.Entity;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entities.WeatherControl
 {
-    public class Forecast
+    public class Forecast : EntityBase
     {
-        public Weather Weather { get; }
-        public uint Day { get; }
-        public double RainfallIntensity { get; }
+        [Required]
+        public Weather Weather { get; set; }
+        [Required]
+        public uint Day { get; set; }
+        [Required]
+        public double RainfallIntensity { get; set; }
 
         protected Forecast(uint day, Weather weather, double rainfallIntensity)
         {
@@ -19,6 +24,8 @@ namespace Entities.WeatherControl
             this.Weather = weather;
             this.RainfallIntensity = rainfallIntensity;
         }
+
+        public Forecast() { }
 
         public Forecast(uint day, double rainfallIntensity) : this(day, Weather.Rainy, rainfallIntensity) { }
 

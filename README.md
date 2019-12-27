@@ -14,3 +14,6 @@ A continuación se detallan las interpretaciones del enunciado:
 
 ## Requerimientos para el Build
 - [Net core 3.0 en adelante](https://dotnet.microsoft.com/download)
+
+## Dependencias
+- Se ha tomado una implementación de web api desde [rosymoggy](https://github.com/rosymoggy/HwEFCoreWebAPI)
