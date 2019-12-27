@@ -1,4 +1,5 @@
 using HwEFCoreWebAPI.Models;
+using HwEFCoreWebAPI.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,8 @@ namespace HwEFCoreWebAPI
                 // options.UseInMemoryDatabase(databaseName: "sistemaMeteorologico")
                 options.UseSqlite(@"Data Source=CustomerDB.db;")
             );
+
+            services.AddHostedService<ForecastGenerationHostedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
