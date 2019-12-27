@@ -1,4 +1,5 @@
-﻿using Entities.WeatherControl;
+﻿using System;
+using Entities.WeatherControl;
 
 namespace HwEFCoreWebAPI.Contracts
 {

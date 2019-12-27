@@ -1,7 +1,6 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
-namespace HwEFCoreWebAPI.Contracts
+namespace System
 {
     public static class EnumExtensions
     {
