@@ -8,10 +8,10 @@ namespace HwEFCoreWebAPI.Contracts
         public ForecastDataContract(Forecast forecast)
         {
             this.Dia = forecast.Day;
-            this.Clima = forecast.Weather;
+            this.Clima = forecast.Weather.Description();
         }
 
         public uint Dia { get; set; }
-        public Weather Clima { get; set; }
+        public string Clima { get; set; }
     }
 }
