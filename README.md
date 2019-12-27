@@ -11,6 +11,7 @@ A continuación se detallan las interpretaciones del enunciado:
   - Se podría obtener el mayor perímetro mediante la maximización de la función perímetro en función de los ángulos. Deberán incluirse restricciones adicionales para asegurar que la figura formada sea un triángulo que incluya al centro de coordenadas.
   - Otra posible interpretación es que el día del pico de lluvia se produce para el triángulo de mayor tamaño del período. Esto presenta contradicciones con la pregunta planteada que sugiere que existe un día de lluvia máxima para todo el pronóstico y no uno por período.
 - Cada día tendrá solo una característica climática, es decir que para cada día el mismo solo podrá ser seco, lluvioso, de condiciones normales de presión y temperatura o del estado 'Otro'.
+- Se asume que los planetas arrancan con 0 grados de desvio sobre el eje horizontal.
 
 ## Requerimientos para el Build
 - [Net core 3.0 en adelante](https://dotnet.microsoft.com/download)
