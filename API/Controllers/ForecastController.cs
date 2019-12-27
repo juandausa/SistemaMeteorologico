@@ -20,8 +20,8 @@ namespace HwEFCoreWebAPI.Controllers
             Context = context;
         }
 
-        [HttpGet("{dia}")]
-        public async Task<ActionResult<ForecastDataContract>> GetForecast(uint dia)
+        [HttpGet]
+        public async Task<ActionResult<ForecastDataContract>> GetForecast([FromQuery(Name = "dia")] uint dia)
         {
             var person = await Context.Forecasts.FirstOrDefaultAsync(x => x.Day == dia);
 
