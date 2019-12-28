@@ -14,7 +14,7 @@ A continuación se detallan las interpretaciones del enunciado:
 - Se asume que los planetas arrancan con 0 grados de desvio sobre el eje horizontal.
 
 ## Requerimientos para el Build
-- [Net core 3.0 en adelante](https://dotnet.microsoft.com/download)
+- [Net core 3.1 en adelante](https://dotnet.microsoft.com/download)
 
 ## Dependencias
 - Se ha tomado una implementación de web api desde [rosymoggy](https://github.com/rosymoggy/HwEFCoreWebAPI)
