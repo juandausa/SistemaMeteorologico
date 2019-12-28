@@ -7,14 +7,14 @@ namespace Entities.Test.WeatherControl
     public class PointExtensionsTestCase
     {
         [Fact]
-        public void SamePoint_Distance_RetuenZero()
+        public void Point_DistanceAgainstItself_RetuenZero()
         {
             (double, double) pointA = (1, 1);
             pointA.Distance(pointA, 2).Should().Be(0);
         }
 
         [Fact]
-        public void TwoPoints_Distance_RetuenSameDistance()
+        public void DistanceBetweenPoints_Distance_RetuenSameDistance()
         {
             (double, double) pointA = (1, 1);
             (double, double) pointB = (1, 2);
