@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions", "Extensions\Ex
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HwEFCoreWebAPI", "API\HwEFCoreWebAPI.csproj", "{571241E0-E978-4D9A-83ED-87B22EFD711A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console", "Console\Console.csproj", "{E2A395C2-7446-44E9-B140-A5FBD398D30D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{571241E0-E978-4D9A-83ED-87B22EFD711A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{571241E0-E978-4D9A-83ED-87B22EFD711A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{571241E0-E978-4D9A-83ED-87B22EFD711A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2A395C2-7446-44E9-B140-A5FBD398D30D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2A395C2-7446-44E9-B140-A5FBD398D30D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2A395C2-7446-44E9-B140-A5FBD398D30D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2A395C2-7446-44E9-B140-A5FBD398D30D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
