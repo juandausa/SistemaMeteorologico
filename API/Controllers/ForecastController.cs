@@ -10,9 +10,6 @@ namespace HwEFCoreWebAPI.Controllers
     [ApiController]
     public class ForecastController : ControllerBase
     {
-        /// <summary>
-        /// DB Context
-        /// </summary>
         private readonly ForecastContext Context;
 
         public ForecastController(ForecastContext context)
@@ -23,20 +20,20 @@ namespace HwEFCoreWebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<ForecastDataContract>> GetForecast([FromQuery(Name = "dia")] uint dia)
         {
-            var person = await Context.Forecasts.FirstOrDefaultAsync(x => x.Day == dia);
+            var forecast = await this.Context.Forecasts.FirstOrDefaultAsync(x => x.Day == dia);
 
-            if (person == null)
+            if (forecast == null)
             {
                 return NotFound();
             }
 
-            return new ForecastDataContract(person);
+            return new ForecastDataContract(forecast);
         }
 
-        [HttpGet("Prueba")]
+        [HttpGet("prueba")]
         public ActionResult<ForecastDataContract> GetForecast()
         {
-            return new ForecastDataContract();
+            return new ForecastDataContract() { Dia = 10321, Clima = "sequía" };
         }
     }
 }
